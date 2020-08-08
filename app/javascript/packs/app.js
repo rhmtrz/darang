@@ -6,7 +6,6 @@ import reducer, { INITIAL_STATE } from "./hooks/reducers";
 import GlobalStyles from "./styles/global-style";
 import LoginPage from "./pages/login";
 import EditorPage from "./pages/editor";
-
 export const Context = createContext();
 export const history = createBrowserHistory();
 
@@ -31,6 +30,7 @@ const App = () => {
         <Switch>
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/editor" component={EditorPage} />
+
         </Switch>
         <GlobalStyles />
       </Router>
