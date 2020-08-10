@@ -18,12 +18,12 @@ const App = () => {
     dispatch,
   };
 
-  useEffect(() => {
-    const token = localStorage.getItem("__cred");
-    if (token === null) {
-      history.push("/login");
-    }
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("__cred");
+  //   if (token === null) {
+  //     history.push("/login");
+  //   }
+  // }, []);
 
   return (
     <Context.Provider value={value}>
