@@ -9,6 +9,7 @@ export const Context = createContext();
 export const history = createBrowserHistory();
 import "./styles/styles.css";
 import HomePage from "./pages/home";
+import ArticlePage from "./pages/article";
 const App = () => {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
 
@@ -31,6 +32,7 @@ const App = () => {
           <Route exact path="/" component={HomePage} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/editor" component={EditorPage} />
+          <Route exact path="/article" component={ArticlePage} />
         </Switch>
         <GlobalStyles />
       </Router>
