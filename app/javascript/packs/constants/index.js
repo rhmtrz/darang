@@ -1,4 +1,4 @@
-export const VERSION = "v0.2.1";
+export const VERSION = "v0.1.0";
 
 export const httpStatus = {
   OK: 200,
