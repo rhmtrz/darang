@@ -1,6 +1,10 @@
 {
   "name": "darang",
   "private": true,
+  "scripts": {
+    "fix": "lint-staged",
+    "postinstall": "echo 'Make Action Cable work' && cp node_modules/@rails/actioncable/app/assets/javascripts/action_cable.js app/javascript"
+  },
   "dependencies": {
     "@babel/preset-react": "^7.10.4",
     "@rails/actioncable": "^6.0.3",
@@ -13,12 +17,32 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-responsive": "^8.1.0",
     "react-router-dom": "^5.2.0",
     "styled-jsx": "^3.3.0",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.6.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.5",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5",
     "webpack-dev-server": "^3.11.0"
+  },
+  "lint-staged": {
+    "./app/javascript/**/*.js": [
+      "prettier --write",
+      "eslint --fix --quiet",
+      "git add"
+    ],
+    "./app/javascript/**/*.json": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
