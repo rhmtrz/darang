@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import Dante from "Dante2";
-import { convertFromRaw } from "draft-js";
+import React, { useState, useEffect, useRef, Fragment } from "react";
+import PropTypes from 'prop-types'
+
 import Layout from "../components/commons/layout";
+import {postArticles} from "../hooks/article_actions"
+
 
 const style = {
   width: "50%",
@@ -10,46 +12,35 @@ const style = {
   verticalAlign: "top",
 };
 
-const EditorPage = () => {
-  const [content, saveContent] = useState({});
+const EditorPage = (props) => {
 
-  const save_handler = (editorContext, cont) => {
-    console.log("cont", cont);
+  const [editorState, setState] = useState('Hello world');
+  const trixInput = useRef(null)
 
-    saveContent(cont);
-  };
 
-  let danteProps = {
-    data_storage: {
-      url: "xxx",
-      save_handler: save_handler,
-    },
-  };
+  useEffect(() => {
+    trixInput.current.addEventListener("trix-change", event => {
+      console.log("trix change event fired", event);
+      setState(event.target.innerHTML); //calling custom event
+    });
+  }, [])
 
-  let contentState = {};
-  try {
-    contentState = convertFromRaw(content);
-  } catch (e) {
-    console.log(e);
-  }
+  console.log(editorState)
 
-  console.log("state", content);
+
   return (
     <Layout signOut={() => alert("Not yet")}>
-      <div className="container">
-        <Dante {...danteProps} />
+      <div dir="auto" className="container">
+
         <hr />
-        <div className="states">
-          <div style={style}>
-            <p>Raw State</p>
-            <pre>{JSON.stringify(content, null, 2)}</pre>
-          </div>
-          <div style={style}>
-            <p>Content State</p>
-            <pre>{JSON.stringify(contentState, null, 2)}</pre>
-          </div>
-        </div>
+        <input
+          type="hidden"
+          id="trix"
+          value={editorState}
+        />
+        <trix-editor accepts="autofocus" dir="auto" input="trix" ref={trixInput} />
       </div>
+      <button onClick={() => postArticles(editorState)}>Submit</button>
       <style jsx>{`
         .container {
           margin: 2rem 5rem;
@@ -61,5 +52,6 @@ const EditorPage = () => {
     </Layout>
   );
 };
+
 
 export default EditorPage;

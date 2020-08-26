@@ -5,11 +5,15 @@ import reducer, { INITIAL_STATE } from "./hooks/reducers";
 import GlobalStyles from "./styles/global-style";
 import LoginPage from "./pages/login";
 import EditorPage from "./pages/editor";
-export const Context = createContext();
-export const history = createBrowserHistory();
+
 import "./styles/styles.css";
 import HomePage from "./pages/home";
 import ArticlePage from "./pages/article";
+
+
+export const Context = createContext();
+export const history = createBrowserHistory();
+
 const App = () => {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
 
