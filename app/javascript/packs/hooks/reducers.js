@@ -7,6 +7,7 @@ export const INITIAL_STATE = {
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case actionTypes.FETCH_ARTICLES:
+      console.log('++++',action.articles)
       return {
         ...state,
         articles: action.articles

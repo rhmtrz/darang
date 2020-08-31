@@ -30,7 +30,10 @@ export const fetchArticles = async (dispatch) => {
 export const postArticles = async (content) => {
   const url = window.origin + "/api/articles";
   const body = JSON.stringify({
-    content
+    article: {
+      body: content,
+      title: 'default title'
+    }
   });
   console.log('___', body, content)
 
