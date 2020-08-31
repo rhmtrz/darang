@@ -83,3 +83,9 @@ production:
   database: darang_production
   username: darang
   password: <%= ENV['DARANG_DATABASE_PASSWORD'] %>
+
+
+staging:
+  database: darang_staging
+  username: darang
+  password: <%= ENV['DARANG_DATABASE_PASSWORD'] %>
