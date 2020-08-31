@@ -95,3 +95,6 @@ production:
 
   # Cache manifest.json for performance
   cache_manifest: true
+
+staging:
+  <<: *default
