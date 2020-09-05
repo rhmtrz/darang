@@ -38,7 +38,10 @@ const EditorPage = (props) => {
           id="trix"
           value={editorState}
         />
-        <trix-editor accepts="autofocus" dir="auto" input="trix" ref={trixInput} />
+        <trix-editor
+          data-direct-upload-url="/rails/active_storage/direct_uploads"
+          data-blob-url-template="/rails/active_storage/blobs/:signed_id/*filename"
+          accepts="autofocus" dir="auto" input="trix" ref={trixInput} />
       </div>
       <button onClick={() => postArticles(editorState)}>Submit</button>
       <style jsx>{`
