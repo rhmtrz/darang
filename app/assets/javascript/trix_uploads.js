@@ -1,5 +1,5 @@
 (function() {
-  var HOST = "https://d13txem1unpe48.cloudfront.net/"
+  var HOST = window.location.origin
 
   addEventListener("trix-attachment-add", function(event) {
     if (event.attachment.file) {

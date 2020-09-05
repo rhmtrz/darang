@@ -66,6 +66,7 @@ gem 'action-cable-testing'
 
 gem 'dotenv-rails'
 
+gem 'tinymce-rails'
 
 gem 'mini_magick'
 gem 'aws-sdk-s3', require: false
