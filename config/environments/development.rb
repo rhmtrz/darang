@@ -37,6 +37,16 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
 
+  config.active_storage.variable_content_types = %w(
+  image/png
+  image/gif
+  image/jpg
+  image/jpeg
+  image/webp
+  image/vnd.adobe.photoshop
+  image/vnd.microsoft.icon
+)
+
   config.action_mailer.default_url_options = { host: 'localhost:3000',}
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
