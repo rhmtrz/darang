@@ -9,6 +9,8 @@ import EditorPage from "./pages/editor";
 import "./styles/styles.css";
 import HomePage from "./pages/home";
 import ArticlePage from "./pages/article";
+import SignUpPage from "./pages/sign-up";
+import EmailConfirmedPage from "./pages/email-confirmed";
 
 
 export const Context = createContext();
@@ -35,8 +37,11 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/sign-up" component={SignUpPage}/>
           <Route exact path="/editor" component={EditorPage} />
           <Route exact path="/article" component={ArticlePage} />
+          <Route exact path="/email-confirmed" component={EmailConfirmedPage} />
+
         </Switch>
         <GlobalStyles />
       </Router>
