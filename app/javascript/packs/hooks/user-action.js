@@ -33,3 +33,31 @@ export const loginUser = async (email, password) => {
 };
 
 
+export const signUpUser = async (dispatch, data) => {
+  const url = window.origin + "/users";
+  const { email, password, passwordConfirmation, nickname } = data;
+  const body = JSON.stringify({
+    email,
+    nickname,
+    password,
+    password_confirmation: passwordConfirmation
+  });
+
+  const res = await fetch(url, {
+    method: "POST",
+    body,
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+console.log(res.status)
+  if (res.status === httpStatus.OK) {
+    alert("sign up success");
+  } else if (res.status === httpStatus.CONFLICT) {
+    const data = await res.json();
+    alert(data.message);
+  } else {
+    alert("Failed");
+  }
+};
+

@@ -1,4 +1,5 @@
 import {
+  generateHeader,
   httpStatus,
   setCredential,
 } from "../helper";
@@ -40,9 +41,7 @@ export const postArticles = async (content) => {
   const res = await fetch(url, {
     method: "POST",
     body,
-    headers: {
-      "Content-Type": "application/json"
-    }
+    headers: generateHeader()
   });
 
   if (res.status === httpStatus.SUCCEED) {
