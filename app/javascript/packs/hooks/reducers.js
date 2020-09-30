@@ -2,6 +2,7 @@ import actionTypes from "./action-type";
 
 export const INITIAL_STATE = {
   articles: [],
+  authUser: {}
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -13,6 +14,11 @@ const reducer = (state = INITIAL_STATE, action) => {
         articles: action.articles
       };
 
+    case actionTypes.SET_AUTH_USER:
+      return {
+        ...state,
+        authUser: action.user
+      };
     default:
       return state;
   }

@@ -1,8 +1,11 @@
-import React, { useState, useEffect, useRef, Fragment } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import PropTypes from 'prop-types'
 
 import Layout from "../components/commons/layout";
 import {postArticles} from "../hooks/article_actions"
+import {fetchCurrentUser} from "../hooks/user-action";
+import { Context } from "../app";
+import {generateHeader} from "../helper";
 
 
 const style = {
@@ -16,7 +19,12 @@ const EditorPage = (props) => {
 
   const [editorState, setState] = useState('Hello world');
   const trixInput = useRef(null)
+  const { dispatch, authUser } = useContext(Context);
 
+  useEffect(() => {
+
+    fetchCurrentUser(dispatch)
+  }, [])
 
   useEffect(() => {
     trixInput.current.addEventListener("trix-change", event => {
@@ -64,19 +72,6 @@ const EditorPage = (props) => {
     const key = createStorageKey(file)
     const formData = createFormData(key, file)
     const xhr = new XMLHttpRequest()
-    // const url = `${HOST}/rails/active_storage/direct_uploads`
-    // const res = await fetch(url, {
-    //   method: 'POST',
-    //   body: formData
-    // })
-    //
-    // if (res.status == 204) {
-    //   const attributes = {
-    //     url: HOST + key,
-    //     href: HOST + key + "?content-disposition=attachment"
-    //   }
-    //   successCallback(attributes)
-    // }
 
     xhr.open("POST", HOST, true)
 
@@ -94,6 +89,8 @@ const EditorPage = (props) => {
         successCallback(attributes)
       }
     })
+
+    xhr.setRequestHeader('Authorization', generateHeader());
 
     xhr.send(formData)
   }
@@ -129,7 +126,7 @@ const EditorPage = (props) => {
           data-blob-url-template="/rails/active_storage/blobs/:signed_id/*filename"
           accepts="autofocus" dir="auto" input="trix" ref={trixInput} />
       </div>
-      <button onClick={() => postArticles(editorState)}>Submit</button>
+      <button onClick={() => postArticles(editorState, authUser)}>Submit</button>
       <style jsx>{`
         .container {
           margin: 2rem 5rem;
