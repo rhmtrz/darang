@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, only: [:create]
+  # before_action :authenticate_user!, only: [:create]
 
   def index
     @articles = Article.all.order("created_at DESC")
@@ -7,8 +7,9 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    article = Article.new(article_params)
-    if article.save
+    @articles = Article.new(article_params)
+    # debugger
+    if @articles.save
       UsersArticle.create({user_id: params[:user_id], article_id: article.id})
       render status: 204, json: {message: "success"}
     end
