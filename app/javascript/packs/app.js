@@ -9,6 +9,7 @@ import EditorPage from "./pages/editor";
 import "./styles/styles.css";
 import HomePage from "./pages/home";
 import ArticlePage from "./pages/article";
+import DraftEditor from "./pages/draftjs";
 
 
 export const Context = createContext();
@@ -37,6 +38,7 @@ const App = () => {
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/editor" component={EditorPage} />
           <Route exact path="/article" component={ArticlePage} />
+          <Route exact pat="/draft" component={DraftEditor}/>
         </Switch>
         <GlobalStyles />
       </Router>
