@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resource :articles, only: [:create, :update, :destroy]
     post '/articles/image', to: 'articles#upload_image'
     get '/articles', to: 'articles#index'
+    get '/current-user', to: 'users#current_logged_in_user'
+
   end
 
   root 'home#index'

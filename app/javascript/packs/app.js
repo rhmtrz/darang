@@ -11,6 +11,7 @@ import HomePage from "./pages/home";
 import ArticlePage from "./pages/article";
 import SignUpPage from "./pages/sign-up";
 import EmailConfirmedPage from "./pages/email-confirmed";
+import QuillPage from "./pages/quill";
 
 
 export const Context = createContext();
@@ -41,6 +42,7 @@ const App = () => {
           <Route exact path="/editor" component={EditorPage} />
           <Route exact path="/article" component={ArticlePage} />
           <Route exact path="/email-confirmed" component={EmailConfirmedPage} />
+          <Route exact path="/quill" component={QuillPage} />
 
         </Switch>
         <GlobalStyles />
