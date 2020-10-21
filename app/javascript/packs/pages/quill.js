@@ -18,21 +18,37 @@ const EditorContainer = () => {
     setEditorState(editorState)
   };
 
+  const onAddImage = (e) => {
+    e.preventDefault();
+    const editorState = this.state.editorState;
+    const urlValue = window.prompt('Paste Image Link')
+    const contentState = editorState.getCurrentContent();
+    const contentStateWithEntity = contentState.createEntity('image', 'IMMUTABLE', {src: urlValue});
+    const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+    const newEditorState = EditorState.set(editorState, {currentContent: contentStateWithEntity}, 'create-entity');
+    this.setState({
+      editorState: AtomicBlockUtils.insertAtomicBlock(newEditorState, entityKey, ' '),
+    }, () => {
+      setTimeout(() => this.focus(), 0);
+    });
+  }
+
 
 
   const  uploadImageCallBack = (file) => {
     return new Promise(
       (resolve, reject) => {
         const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'https://api.imgur.com/3/image');
-        xhr.setRequestHeader('Authorization', 'Client-ID ##clientid##');
+        const url = window.origin + "/api/articles";
+        xhr.open('POST', url);
+        // xhr.setRequestHeader('Authorization', 'Client-ID ##clientid##');
         const data = new FormData();
         data.append('image', file);
         xhr.send(data);
         xhr.addEventListener('load', () => {
           const response = JSON.parse(xhr.responseText);
           console.log(response)
-          resolve(response);
+          resolve(response);d
         });
         xhr.addEventListener('error', () => {
           const error = JSON.parse(xhr.responseText);

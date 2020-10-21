@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   # before_action :authenticate_user!, only: [:create]
-
+  skip_before_action :verify_authenticity_token
   def index
     @articles = Article.all.order("created_at DESC")
     render 'index', status: 200, :format => [:json], :handler => :jbuilder
