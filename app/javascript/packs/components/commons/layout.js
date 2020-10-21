@@ -17,8 +17,6 @@ const Layout = ({ children }) => {
   const [isShowSideMenu, toggleSideMenu] = useState(false);
   const credential = localStorage.getItem("__cred");
 
-
-
   const isMobile = useMediaQuery({ maxWidth: MAX_DISPLAY_WIDTH });
   return (
     <div>
@@ -31,6 +29,9 @@ const Layout = ({ children }) => {
           />
         )}
         <h1 className="app-name">DARANG {VERSION}</h1>
+        <ul className="editor-list">
+          <li onClick={() => history.push("/")}>Home</li>
+        </ul>
         {credential !== null && !isMobile &&
           <ul className="editor-list">
             <li onClick={() => history.push("/draft")}>Draft Editor</li>
