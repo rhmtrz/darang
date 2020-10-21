@@ -21,7 +21,6 @@ export const fetchArticles = async (dispatch) => {
       type: actionTypes.FETCH_ARTICLES,
       articles: data.articles
     });
-    alert("Fetch articles success");
   } else {
     alert("Fetch articles failed");
   }

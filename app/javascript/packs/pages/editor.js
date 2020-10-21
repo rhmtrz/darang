@@ -113,8 +113,7 @@ const EditorPage = (props) => {
 
   return (
     <Layout signOut={() => alert("Not yet")}>
-      <div dir="auto" className="container">
-
+      <div dir="auto" className="container editor">
         <hr />
         <input
           type="hidden"
@@ -128,9 +127,6 @@ const EditorPage = (props) => {
       </div>
       <button onClick={() => postArticles(editorState, authUser)}>Submit</button>
       <style jsx>{`
-        .container {
-          margin: 2rem 5rem;
-        }
         .states {
           margin-top: 3rem;
         }

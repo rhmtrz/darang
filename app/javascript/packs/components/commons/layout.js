@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { VERSION } from "../../constants";
 import Colors from "../../styles/color";
@@ -9,10 +9,13 @@ import { MAX_DISPLAY_WIDTH } from "../../constants";
 import profileIcon from "../../images/icons/profile.png";
 import burgerMenuIcon from "../../images/icons/burger-menu.png";
 import SideMenu from "./side-menu";
+import {history} from "../../app";
+import {logoutUser} from "../../hooks/user-action";
 
-const Layout = ({ children, signOut }) => {
+const Layout = ({ children }) => {
   const [isShowProfileMenu, toggleProfileMenu] = useState(false);
   const [isShowSideMenu, toggleSideMenu] = useState(false);
+  const credential = localStorage.getItem("__cred");
 
   const isMobile = useMediaQuery({ maxWidth: MAX_DISPLAY_WIDTH });
   return (
@@ -26,6 +29,15 @@ const Layout = ({ children, signOut }) => {
           />
         )}
         <h1 className="app-name">DARANG {VERSION}</h1>
+        <ul className="editor-list">
+          <li onClick={() => history.push("/")}>Home</li>
+        </ul>
+        {credential !== null && !isMobile &&
+          <ul className="editor-list">
+            <li onClick={() => history.push("/draft")}>Draft Editor</li>
+            <li onClick={() => history.push("/trix")}>Trix Editor</li>
+          </ul>
+        }
         <div className="profile-box">
           <img
             className="profile-img"
@@ -34,9 +46,15 @@ const Layout = ({ children, signOut }) => {
           />
           {isShowProfileMenu && (
             <div className="submenu">
-              <p className="logout" onClick={() => signOut()}>
+              {credential !== null ?
+              (<p className="logout" onClick={() => logoutUser()}>
                 Logout
-              </p>
+              </p> ): (
+                <p className="logout" onClick={() => history.push("/login")}>
+                  Login
+                </p>
+                )
+              }
             </div>
           )}
           {isShowProfileMenu && (
@@ -61,7 +79,6 @@ const Layout = ({ children, signOut }) => {
           align-items: center;
           justify-content: space-between;
           border-bottom: 1px solid;
-          padding: 0 4rem;
         }
         h1 {
           text-align: center;
@@ -101,6 +118,19 @@ const Layout = ({ children, signOut }) => {
           border: 1px solid ${Colors.black};
           cursor: pointer;
         }
+        .editor-list {
+          list-style: none;
+          display: flex;
+          padding: 0;
+          margin: 0;
+        }
+        .editor-list li {
+          padding: 1rem;
+          cursor: pointer;
+        }
+        .editor-list li:hover {
+          background: yellow;
+        }
       `}</style>
     </div>
   );
@@ -108,7 +138,6 @@ const Layout = ({ children, signOut }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-  signOut: PropTypes.func.isRequired,
 };
 
 export default Layout;

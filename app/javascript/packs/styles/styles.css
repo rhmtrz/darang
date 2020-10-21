@@ -1,3 +1,89 @@
 body {
     margin: 0;
 }
+
+@media only screen and (min-width: 800px) {
+  /* Navbar */
+  .nav-bar {
+    padding: 0 3rem;
+  }
+  /* Roid controller page */
+  .control-roid-container {
+    margin: 0 5rem;
+  }
+  .robot-controller {
+    display: flex;
+  }
+  .head-controller-nipple {
+    margin-left: 150px;
+  }
+  .editor {
+    width: 60rem;
+    margin: 2rem auto
+  }
+  .articles-box {
+    max-width: 60rem;
+    display: grid;
+    grid-template-columns: 25rem 25rem;
+    column-gap: 2rem;
+    margin: 0 auto;
+  }
+  .article-item {
+    width: 25rem;
+    height: 25rem;
+    border: 1px solid gray;
+  }
+}
+
+/* Mobile Response */
+@media only screen and (max-width: 800px) {
+  /* Navbar */
+  .nav-bar {
+    padding: 0 1rem;
+  }
+  .app-name {
+    font-size: 16px;
+    margin: 1rem 1rem 0.5rem 1rem;
+  }
+
+  /* Roid controller page */
+  .control-roid-container {
+    margin: 0 1rem;
+  }
+  .head-controller-nipple {
+    display: none;
+  }
+  .sticks-controller {
+    justify-content: space-between;
+    margin-top: 0.2rem;
+  }
+
+  .foot-arrow-controller {
+    width: 120px !important;
+    height: 120px !important;
+  }
+  .foot-arrow-up {
+    left: 2.5rem !important;
+  }
+  .foot-arrow-down {
+    left: 2.5rem !important;
+  }
+  .profile-img {
+    width: 2rem !important;
+  }
+  .burger-menu {
+    width: 2rem !important;
+  }
+
+  .editor {
+    margin: 1rem;
+  }
+  .article-item {
+    border: 1px solid gray;
+    margin: 1rem;
+  }
+}
+
+.burger-menu {
+  width: 2.2rem;
+}
