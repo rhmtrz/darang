@@ -7,10 +7,9 @@ import { signUpUser } from "../hooks/user-action";
 const SignUpPage = () => {
   const { dispatch } = useContext(Context);
   const defaultState = {
-    email: "tt@test.com",
-    nickname: "password",
-    password: "password",
-    passwordConfirmation: "password"
+    email: "",
+    password: "",
+    passwordConfirmation: ""
   };
 
   const [state, setState] = useState(defaultState);
@@ -31,12 +30,12 @@ const SignUpPage = () => {
           value={state.email}
           onChange={e => onChangeState("email", e.target.value)}
         />
-        <label className="g-label">Nickname</label>
-        <input
-          className="g-input"
-          value={state.nickname}
-          onChange={e => onChangeState("nickname", e.target.value)}
-        />
+        {/*<label className="g-label">Nickname</label>*/}
+        {/*<input*/}
+        {/*  className="g-input"*/}
+        {/*  value={state.nickname}*/}
+        {/*  onChange={e => onChangeState("nickname", e.target.value)}*/}
+        {/*/>*/}
         <label className="g-label">Password</label>
         <input
           className="g-input"

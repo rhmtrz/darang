@@ -6,6 +6,7 @@ import draftToHtml from 'draftjs-to-html';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import {postArticles} from "../hooks/article_actions";
 import {Context} from "../app";
+import Layout from "../components/commons/layout";
 
 
 const EditorContainer = () => {
@@ -59,21 +60,24 @@ const EditorContainer = () => {
     );
   }
   return (
-    <div className='editor'>
-      <Editor
-        editorState={editorState}
-        onEditorStateChange={onEditorStateChange}
-        toolbar={{
-          inline: { inDropdown: true },
-          list: { inDropdown: true },
-          textAlign: { inDropdown: true },
-          link: { inDropdown: true },
-          history: { inDropdown: true },
-          image: { uploadCallback: uploadImageCallBack, alt: { present: true, mandatory: true } },
-        }}
-      />
-      <button onClick={() => postArticles(editorState, authUser)}>Submit</button>
-    </div>
+    <Layout signOut={() => alert("Not Yet")}>
+      <div className='editor'>
+        <Editor
+          editorState={editorState}
+          onEditorStateChange={onEditorStateChange}
+          toolbar={{
+            inline: { inDropdown: true },
+            list: { inDropdown: true },
+            textAlign: { inDropdown: true },
+            link: { inDropdown: true },
+            history: { inDropdown: true },
+            image: { uploadCallback: uploadImageCallBack, alt: { present: true, mandatory: true } },
+          }}
+        />
+        <button onClick={() => postArticles(editorState, authUser)}>Submit</button>
+      </div>
+
+    </Layout>
   )
 }
 

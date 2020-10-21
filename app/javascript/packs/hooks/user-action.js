@@ -33,6 +33,22 @@ export const loginUser = async (email, password) => {
   }
 };
 
+export const logoutUser = async () => {
+  const url = window.origin + "/users/sign_out";
+  const res = await fetch(url, {
+    method: "DELETE",
+    headers: generateHeader()
+  });
+
+  if (res.status === httpStatus.OK) {
+    localStorage.clear();
+    history.push("/")
+    alert("Logout success");
+  } else {
+    alert("Logout failed");
+  }
+};
+
 
 export const signUpUser = async (dispatch, data) => {
   const url = window.origin + "/users";
@@ -85,19 +101,5 @@ export const fetchCurrentUser = async (dispatch) => {
 };
 
 
-export const logoutUser = async () => {
-  const url = window.origin + "/users/sign_out";
-  const res = await fetch(url, {
-    method: "DELETE",
-    headers: generateHeader()
-  });
 
-  if (res.status === httpStatus.OK) {
-    localStorage.clear();
-    alert("Logout success");
-  } else {
-    alert("Logout failed");
-  }
-  history.push("/login");
-};
 

@@ -2,6 +2,8 @@ import React, {useEffect, useContext} from "react";
 import Layout from "../components/commons/layout";
 import { Context } from "../app";
 import {fetchArticles} from "../hooks/article_actions";
+import {logoutUser} from "../hooks/user-action";
+
 const HomePage = () => {
   const {
     articles,
