@@ -32,16 +32,18 @@ const EditorPage = (props) => {
       setState(event.target.innerHTML); //calling custom event
     });
 
-    const setProgress = (progress) => {
-      attachment.setUploadProgress(progress)
-    }
 
-    const setAttributes = (attributes) => {
-      attachment.setAttributes(attributes)
-    }
 
     trixInput.current.addEventListener("trix-attachment-add", event => {
       let attachment = event.attachment;
+      const setProgress = (progress) => {
+        attachment.setUploadProgress(progress)
+      }
+
+      const setAttributes = (attributes) => {
+        attachment.setAttributes(attributes)
+      }
+
       if (attachment.file) {
         uploadFile(attachment, setProgress, setAttributes);
       }
@@ -68,7 +70,8 @@ const EditorPage = (props) => {
   }, [])
 
   const  uploadFile = async (file, progressCallback, successCallback) => {
-    const HOST = window.location.origin
+    // const HOST = window.location.origin
+    var HOST = "https://d13txem1unpe48.cloudfront.net/"
     const key = createStorageKey(file)
     const formData = createFormData(key, file)
     const xhr = new XMLHttpRequest()
@@ -90,7 +93,7 @@ const EditorPage = (props) => {
       }
     })
 
-    xhr.setRequestHeader('Authorization', generateHeader());
+    // xhr.setRequestHeader('Authorization', generateHeader());
 
     xhr.send(formData)
   }

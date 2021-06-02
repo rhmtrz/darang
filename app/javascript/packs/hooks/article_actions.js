@@ -41,7 +41,9 @@ export const postArticles = async (content, user_id) => {
   const res = await fetch(url, {
     method: "POST",
     body,
-    headers: generateHeader()
+    headers: {
+      "Content-Type": "application/json"
+    }
   });
 
   if (res.status === httpStatus.SUCCEED) {

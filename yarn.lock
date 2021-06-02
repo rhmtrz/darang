@@ -3226,6 +3226,11 @@ draft-convert@^2.1.2:
     immutable "~3.7.4"
     invariant "^2.2.1"
 
+draft-js-aws-amplify-s3-plugin@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/draft-js-aws-amplify-s3-plugin/-/draft-js-aws-amplify-s3-plugin-0.1.2.tgz#47976e6920996cf5e1401da26c0349ab8894282c"
+  integrity sha512-CiJj85NTc5lLNT+09vtIkHNjkFU4J0L76S/uZ0LHyJemFD/mn9SYpG5/QsHHBM8M6iV1z+o4O/2FEmFkqz2+tg==
+
 draft-js-custom-styles@^2.0.4:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/draft-js-custom-styles/-/draft-js-custom-styles-2.1.1.tgz#35bbbe7787531c723d2efe2b642cca6e6fc0ccf6"

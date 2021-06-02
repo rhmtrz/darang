@@ -10,7 +10,7 @@ class ArticlesController < ApplicationController
     @articles = Article.new(article_params)
     # debugger
     if @articles.save
-      UsersArticle.create({user_id: params[:user_id], article_id: article.id})
+      # UsersArticle.create({user_id: params[:user_id], article_id: article.id})
       render status: 204, json: {message: "success"}
     end
   end

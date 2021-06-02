@@ -22,7 +22,9 @@ const EditorContainer = () => {
   const onAddImage = (e) => {
     e.preventDefault();
     const editorState = this.state.editorState;
-    const urlValue = window.prompt('Paste Image Link')
+    const url = window.origin + "/rails/active_storage/direct_uploads";
+
+    const urlValue = window.prompt(url)
     const contentState = editorState.getCurrentContent();
     const contentStateWithEntity = contentState.createEntity('image', 'IMMUTABLE', {src: urlValue});
     const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
@@ -36,12 +38,15 @@ const EditorContainer = () => {
 
 
 
+
+
   const  uploadImageCallBack = (file) => {
     return new Promise(
       (resolve, reject) => {
         const xhr = new XMLHttpRequest();
-        const url = window.origin + "/api/articles";
-        xhr.open('POST', url);
+        // const url = window.origin + "/api/articles";
+        var HOST = "https://d13txem1unpe48.cloudfront.net/"
+        xhr.open('POST', HOST);
         // xhr.setRequestHeader('Authorization', 'Client-ID ##clientid##');
         const data = new FormData();
         data.append('image', file);
@@ -49,7 +54,7 @@ const EditorContainer = () => {
         xhr.addEventListener('load', () => {
           const response = JSON.parse(xhr.responseText);
           console.log(response)
-          resolve(response);d
+          resolve(response);
         });
         xhr.addEventListener('error', () => {
           const error = JSON.parse(xhr.responseText);
