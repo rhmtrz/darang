@@ -1,18 +1,24 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {ContentState, convertToRaw, EditorState} from "draft-js";
-import {Editor } from "react-draft-wysiwyg";
+// import {Editor } from "react-draft-wysiwyg";
 import draftToHtml from 'draftjs-to-html';
-
+import createImagePlugin from '@draft-js-plugins/image';
+import Editor from '@draft-js-plugins/editor';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import {postArticles} from "../hooks/article_actions";
 import {Context} from "../app";
 import Layout from "../components/commons/layout";
+import {fetchCurrentUser} from "../hooks/user-action";
 
+
+const imagePlugin = createImagePlugin();
 
 const EditorContainer = () => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty())
 
   const { dispatch, authUser } = useContext(Context);
+
+  console.log("Dranft js", authUser)
 
   const onEditorStateChange = (editorState) => {
     console.log(draftToHtml(convertToRaw(editorState.getCurrentContent())))
@@ -64,7 +70,8 @@ const EditorContainer = () => {
       <div className='editor'>
         <Editor
           editorState={editorState}
-          onEditorStateChange={onEditorStateChange}
+          onChange={setEditorState}
+          plugins={[imagePlugin]}
           toolbar={{
             inline: { inDropdown: true },
             list: { inDropdown: true },
@@ -74,7 +81,7 @@ const EditorContainer = () => {
             image: { uploadCallback: uploadImageCallBack, alt: { present: true, mandatory: true } },
           }}
         />
-        <button onClick={() => postArticles(editorState, authUser)}>Submit</button>
+        <button onClick={() => postArticles(editorState, authUser.id)}>Submit</button>
       </div>
 
     </Layout>

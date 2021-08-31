@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 import Layout from "../components/commons/layout";
 import {postArticles} from "../hooks/article_actions"
-import {fetchCurrentUser} from "../hooks/user-action";
 import { Context } from "../app";
 import {generateHeader} from "../helper";
 
@@ -21,10 +20,6 @@ const EditorPage = (props) => {
   const trixInput = useRef(null)
   const { dispatch, authUser } = useContext(Context);
 
-  useEffect(() => {
-
-    fetchCurrentUser(dispatch)
-  }, [])
 
   useEffect(() => {
     trixInput.current.addEventListener("trix-change", event => {

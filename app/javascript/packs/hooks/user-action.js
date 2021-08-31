@@ -94,7 +94,7 @@ export const fetchCurrentUser = async (dispatch) => {
       user: data
     });
   } else if (res.status === httpStatus.UNAUTHORIZED) {
-    // history.push("/login");
+    history.push("/login");
   } else {
     alert(res.message);
   }

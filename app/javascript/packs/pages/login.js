@@ -4,8 +4,8 @@ import { loginUser } from "../hooks/user-action";
 import Layout from "../components/commons/layout";
 
 const LoginPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("r@gmail.com");
+  const [password, setPassword] = useState("password12");
 
   return (
     <Layout signOut={() => alert('not yet')} >

@@ -7,11 +7,13 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @articles = Article.new(article_params)
+    article = Article.new(article_params)
     # debugger
-    if @articles.save
-      UsersArticle.create({user_id: params[:user_id], article_id: article.id})
-      render status: 204, json: {message: "success"}
+    if article.save
+      art = UsersArticle.new({user_id: params[:user_id], article_id: article.id})
+      if art.save
+        render status: 204, json: {message: "success"}
+      end
     end
   end
 
@@ -22,7 +24,7 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title, :body)
+    params.require(:article).permit(:title, :body, :user_id)
   end
 
 end

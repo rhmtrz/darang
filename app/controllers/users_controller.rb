@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def current_logged_in_user
     @user = current_user
+
     render status: 200, json: @user
   end
 

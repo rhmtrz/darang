@@ -12,6 +12,7 @@ import ArticlePage from "./pages/article";
 import SignUpPage from "./pages/sign-up";
 import EmailConfirmedPage from "./pages/email-confirmed";
 import DraftEditor from "./pages/draft";
+import {fetchCurrentUser} from "./hooks/user-action";
 
 
 export const Context = createContext();
@@ -25,12 +26,13 @@ const App = () => {
     dispatch,
   };
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem("__cred");
-  //   if (token === null) {
-  //     history.push("/login");
-  //   }
-  // }, []);
+  useEffect(() => {
+    const token = localStorage.getItem("__cred");
+    fetchCurrentUser(dispatch)
+    if (token === null) {
+      history.push("/login");
+    }
+  }, []);
 
   return (
     <Context.Provider value={value}>

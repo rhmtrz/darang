@@ -27,14 +27,13 @@ export const fetchArticles = async (dispatch) => {
 };
 
 
-export const postArticles = async (content, user_id) => {
+export const postArticles = async (content, authUser) => {
+  console.log("____+++____",authUser)
   const url = window.origin + "/api/articles";
   const body = JSON.stringify({
-    article: {
-      body: content,
-      title: 'default title'
-    },
-    user_id
+    body: content,
+    title: 'default title',
+    user_id: authUser.id
   });
   console.log('___', body, content)
 
